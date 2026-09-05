@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: Cardo; src: url("fonts/cardo-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: Cardo; src: url("fonts/cardo-bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: Cardo; src: url("fonts/cardo-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { margin: 0; background: #f5f2eb; color: #1b1b1b; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img, video { display: block; max-width: 100%; }
+button, input, textarea { font: inherit; }
+a { color: inherit; text-decoration: none; }
+a:hover { color: #c9a96e; }
+
+@media (min-width: 1101px) {
+  [data-m="intro-p"] { white-space: nowrap; }
+}
+@media (max-width: 1100px) {
+  [data-m="gal-grid"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 760px) {
+  html { scroll-padding-top: 62px; }
+  [data-m="hbar"] { height: 62px !important; width: calc(100% - 28px) !important; }
+  [data-m="hero"] { min-height: 100svh !important; }
+  [data-m="hero-img"] { display: none !important; }
+  [data-m="hero-img-mobile"] { display: block !important; }
+  [data-m="hero-inner"] { align-items: flex-start !important; justify-content: center !important; padding: 62px 22px 0 !important; gap: 10px !important; text-align: left !important; }
+  [data-m="hero-h1"] { display: none !important; }
+  [data-m="hero-h1-mobile"] { display: block !important; font-size: min(8.4vw, 42px) !important; }
+  [data-m="hero-h1-mobile"] span { white-space: nowrap !important; }
+  [data-m="hero-scrim"] { display: none !important; }
+  [data-m="hero-sub"] { font-size: clamp(11px, 3.1vw, 14px) !important; letter-spacing: 0.2em !important; text-align: left !important; }
+  [data-m="am-grid"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  [data-m="am-card"] { min-height: 216px !important; padding: 20px 17px !important; }
+  [data-m="am-icon"] { width: 27px !important; height: 27px !important; }
+  [data-m="gal-grid"] { gap: 8px !important; margin-top: 8px !important; }
+  [data-m="faq-btn"] { padding: 18px 0 !important; gap: 12px !important; grid-template-columns: 26px minmax(0, 1fr) 24px !important; }
+  [data-m="faq-a"] { padding: 0 8px 0 38px !important; }
+  [data-m="faq-title"] { top: 0 !important; margin: 0 0 26px !important; }
+  [data-m="map-title"] { top: 0 !important; margin: 22px 0 26px !important; }
+  [data-m="map"] { border-width: 6px !important; }
+  [data-m="map-addr"] { text-align: center !important; }
+  [data-m="contact-overlay"] { left: 0 !important; top: 0 !important; right: 0 !important; bottom: 0 !important; width: auto !important; height: auto !important; }
+  [data-m="wa-card"] { min-height: 0 !important; aspect-ratio: 4 / 5; }
+  [data-m="wa-overlay"] { inset: 0 !important; display: flex !important; flex-direction: column !important; justify-content: center !important; padding: 24px 20px !important; }
+  [data-m="wa-title"] { position: static !important; top: auto !important; margin: 0 0 18px !important; }
+  [data-m="wa-btn"] { position: static !important; top: auto !important; width: 100% !important; max-width: none !important; }
+  [data-m="wa-btn"] { box-sizing: border-box !important; }
+  [data-m="modal-card"], [data-m="modal-card"] * { box-sizing: border-box !important; }
+  [data-m="modal-card"] input, [data-m="modal-card"] select, [data-m="modal-card"] textarea, [data-m="modal-card"] button[type="submit"] { width: 100% !important; max-width: 100% !important; min-width: 0 !important; }
+  [data-m="modal-card"] > *, [data-m="modal-card"] form > *, [data-m="modal-card"] form > div > * { min-width: 0 !important; }
+  [data-m="form-card"], [data-m="form-card"] * { box-sizing: border-box !important; }
+  [data-m="form-card"] input, [data-m="form-card"] select, [data-m="form-card"] textarea, [data-m="form-card"] button { width: 100% !important; max-width: 100% !important; min-width: 0 !important; }
+  [data-m="form-card"] > *, [data-m="form-card"] form > *, [data-m="form-card"] form > div > * { min-width: 0 !important; }
+  [data-m="am-card"] { transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease !important; }
+  [data-m="am-card"]:hover, [data-m="am-card"]:active { background: #fff !important; border-color: #c9a96e !important; box-shadow: 0 0 20px rgba(201,169,110,0.28) !important; }
+  [data-m="form-card"] { min-height: 0 !important; padding: 26px 20px !important; }
+  [data-m="footer"] { height: auto !important; }
+  [data-m="footer-grid"] { grid-template-columns: 1fr !important; justify-items: center; text-align: center; }
+  [data-m="footer-logo"] { display: none !important; }
+  [data-m="footer-bar"] { top: 0 !important; font-size: 10px !important; }
+}
+@media (max-width: 390px) {
+  [data-m="hlogo"] { width: 112px !important; }
+  [data-m="am-card"] { min-height: 205px !important; padding: 18px 14px !important; }
+}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="font-family: Cardo, Georgia, serif; background: #f5f2eb; color: #1b1b1b;">
+
+  <header style="position: fixed; inset: 0 0 auto; z-index: 100; color: #f5f2eb; background: rgba(1,59,51,0.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(201,169,110,0.24);">
+    <div style="position: relative; display: flex; justify-content: space-between; align-items: center; gap: 24px; width: min(1360px, calc(100vw - 40px)); height: 76px; margin: 0 auto;" data-m="hbar">
+      <a href="#inicio" aria-label="Aurea — inicio" style="display: block;">
+        <img data-m="hlogo" src="assets/logo-header.webp" alt="Aurea" style="width: clamp(132px, 14vw, 200px); height: auto;">
+      </a>
+      <nav aria-label="Navegación principal" style="position: absolute; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: clamp(24px, 3vw, 44px);">
+        <a href="#inicio" data-i18n="navHome" style="font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; padding: 8px 0; transition: color 0.2s;" style-hover="color: #c9a96e;">Inicio</a>
+        <a href="#espacio" data-i18n="navSpace" style="font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; padding: 8px 0; transition: color 0.2s;" style-hover="color: #c9a96e;">El espacio</a>
+        <a href="#contacto" data-i18n="navContact" style="font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; padding: 8px 0; transition: color 0.2s;" style-hover="color: #c9a96e;">Contacto</a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <sc-if value="{{ langToggle }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ toggleLang }}" aria-label="Cambiar idioma" style="display: flex; gap: 6px; align-items: center; padding: 7px 12px; font-size: 13px; letter-spacing: 0.08em; color: inherit; background: none; border: 1px solid rgba(201,169,110,0.48); border-radius: 999px; cursor: pointer;">
+            <span data-lang-es="1" style="opacity: 1; font-weight: 700;">ES</span>
+            <span style="opacity: 0.45;">/</span>
+            <span data-lang-en="1" style="opacity: 0.45;">EN</span>
+          </button>
+        </sc-if>
+        <button onClick="{{ openModal }}" data-i18n="cta" style="display: block; padding: 11px 22px; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: inherit; background: none; border: 1px solid #c9a96e; cursor: pointer; transition: background 0.2s, color 0.2s;" style-hover="background: #c9a96e; color: #013b33;">Haga una cita</button>
+        <button onClick="{{ toggleMenu }}" aria-label="Menú" style="display: none; width: 40px; height: 40px; padding: 9px; color: inherit; background: none; border: 0; cursor: pointer;" data-menu-button="1">
+          <span style="display: block; height: 1px; margin: 5px 0; background: currentColor;"></span>
+          <span style="display: block; height: 1px; margin: 5px 0; background: currentColor;"></span>
+          <span style="display: block; height: 1px; margin: 5px 0; background: currentColor;"></span>
+        </button>
+      </div>
+    </div>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="display: grid; padding: 20px 24px 26px; background: #f5f2eb; color: #013b33; border-top: 1px solid rgba(1,59,51,0.18);">
+        <a href="#inicio" onClick="{{ closeMenu }}" data-i18n="navHome" style="padding: 10px 0; font-size: 17px; letter-spacing: 0.15em; text-transform: uppercase;">Inicio</a>
+        <a href="#espacio" onClick="{{ closeMenu }}" data-i18n="navSpace" style="padding: 10px 0; font-size: 17px; letter-spacing: 0.15em; text-transform: uppercase;">El espacio</a>
+        <a href="#contacto" onClick="{{ closeMenu }}" data-i18n="navContact" style="padding: 10px 0; font-size: 17px; letter-spacing: 0.15em; text-transform: uppercase;">Contacto</a>
+        <button onClick="{{ openModal }}" data-i18n="cta" style="margin-top: 12px; padding: 14px 18px; color: #f5f2eb; background: #013b33; border: 1px solid #013b33; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;">Haga una cita</button>
+      </div>
+    </sc-if>
+  </header>
+
+  <section id="inicio" data-screen-label="Hero" data-m="hero" style="position: relative; overflow: hidden; min-height: min(900px, 100svh); color: #fff;">
+    <img data-m="hero-img" src="assets/hero.webp" alt="Celebración íntima en el patio de Aurea" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 45%;">
+    <img data-m="hero-img-mobile" src="assets/hero-mobile.webp" alt="Mesa vestida frente al arco de cantera de Aurea" style="display: none; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 50%;">
+    <div data-m="hero-scrim" style="position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.08) 45%, rgba(0,0,0,0.52));"></div>
+    <div style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 22px; padding: 76px 24px 0; text-align: center;" data-m="hero-inner">
+      <h1 data-i18n="hero" data-m="hero-h1" style="max-width: 1000px; margin: 0; font-weight: 400; font-size: 64px; line-height: 1.08; letter-spacing: 0.09em; text-transform: uppercase; text-wrap: balance">El escenario perfecto para su boda</h1>
+      <h1 data-m="hero-h1-mobile" style="display: none; max-width: 100%; margin: 0; font-weight: 300; font-size: clamp(34px, 10.5vw, 46px); line-height: 1.06; letter-spacing: 0; text-align: left;">
+        <span data-i18n="heroL1" style="display: block;">El escenario perfecto</span>
+        <span data-i18n="heroL2" style="display: block;">para su boda</span>
+      </h1>
+      <p data-i18n="heroSub" data-m="hero-sub" style="margin: 0; font-size: clamp(11px, 1.4vw, 18px); letter-spacing: 0.22em; text-transform: uppercase;">Un venue frente a Santo Domingo</p>
+    </div>
+  </section>
+
+  <section data-m="intro-sec" style="width: min(1400px, calc(100vw - 48px)); margin: 0 auto; padding-block: clamp(52px, 8vw, 110px); text-align: center;">
+    <p data-i18n="intro1" data-m="intro-p" style="margin: 0; font-size: clamp(17px, 2vw, 27px); line-height: 1.6; text-wrap: pretty;">Aurea nace con un solo propósito, hacer de la celebración un recuerdo destinado a permanecer.</p>
+    
+  </section>
+
+  <sc-if value="{{ film }}" hint-placeholder-val="{{ true }}">
+    <section data-film-sec="" aria-label="Aurea en movimiento" style="position: relative; overflow: hidden; width: 100%; aspect-ratio: 16 / 9; background: #013b33;">
+      <video src="assets/film.mp4" poster="assets/film.webp" controls="{{ true }}" preload="metadata" style="width: 100%; height: 100%; object-fit: cover;"></video>
+    </section>
+  </sc-if>
+
+  <section style="width: min(980px, calc(100vw - 48px)); margin: 0 auto; padding-block: clamp(52px, 8vw, 110px); text-align: center;">
+    <p data-i18n="shared" style="margin: 0; font-size: clamp(17px, 2vw, 27px); line-height: 1.6; text-wrap: pretty;">Una vida compartida se escribe a través de momentos, lugares y recuerdos.</p>
+  </section>
+
+  <section data-screen-label="El encuentro" style="position: relative; overflow: hidden; min-height: clamp(240px, 42vw, 610px); color: #fff;">
+    <img src="assets/encuentro.webp" alt="Vista del Templo de Santo Domingo de Guzmán" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 48% center;">
+    <div data-m="hero-scrim" style="position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.08) 45%, rgba(0,0,0,0.52));"></div>
+    <div style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; padding: 24px; text-align: center;">
+      <h2 data-i18n="encounter" style="margin: 0; font-weight: 400; font-size: clamp(24px, 5vw, 64px); line-height: 1.08; letter-spacing: 0.22em; text-transform: uppercase; text-wrap: balance;">El encuentro</h2>
+      <p data-i18n="encounterCaption" style="margin: 0; font-size: clamp(10px, 1.4vw, 18px); letter-spacing: 0.22em; text-transform: uppercase;">Templo de Santo Domingo de Guzmán</p>
+    </div>
+  </section>
+
+  <section style="width: min(1180px, calc(100vw - 48px)); margin-inline: auto; padding-block: clamp(62px, 9vw, 132px);">
+    <p data-i18n="encounterBody" style="max-width: 1000px; margin: 0 auto clamp(44px, 7vw, 94px); font-size: clamp(17px, 2vw, 27px); line-height: 1.6; text-align: center; text-wrap: pretty;">Iniciada en 1575, la construcción del Templo de Santo Domingo de Guzmán dio origen a uno de los conjuntos más representativos del barroco novohispano. Su presencia convierte el entorno de Aurea en un escenario difícil de encontrar en cualquier otro lugar.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(30px, 4vw, 56px);">
+      <article style="padding-top: 22px; border-top: 1px solid #c9a96e;">
+        <h3 data-i18n="hist1t" style="margin: 0; color: #013b33; font-weight: 400; font-size: clamp(16px, 1.6vw, 23px); line-height: 1.35; letter-spacing: 0.14em; text-transform: uppercase;">Una obra monumental</h3>
+        <p data-i18n="hist1b" style="margin: 18px 0 0; font-size: clamp(15px, 1.45vw, 21px); line-height: 1.55;">Su planta de cruz latina, sus diez capillas laterales y sus bóvedas ornamentadas reflejan la riqueza artística del periodo novohispano.</p>
+      </article>
+      <article style="padding-top: 22px; border-top: 1px solid #c9a96e;">
+        <h3 data-i18n="hist2t" style="margin: 0; color: #013b33; font-weight: 400; font-size: clamp(16px, 1.6vw, 23px); line-height: 1.35; letter-spacing: 0.14em; text-transform: uppercase;">Patrimonio vivo</h3>
+        <p data-i18n="hist2b" style="margin: 18px 0 0; font-size: clamp(15px, 1.45vw, 21px); line-height: 1.55;">El templo forma parte del Centro Histórico de Oaxaca, reconocido como Patrimonio Mundial por la UNESCO desde 1987.</p>
+      </article>
+      <article style="padding-top: 22px; border-top: 1px solid #c9a96e;">
+        <h3 data-i18n="hist3t" style="margin: 0; color: #013b33; font-weight: 400; font-size: clamp(16px, 1.6vw, 23px); line-height: 1.35; letter-spacing: 0.14em; text-transform: uppercase;">Una experiencia a unos pasos</h3>
+        <p data-i18n="hist3b" style="margin: 18px 0 0; font-size: clamp(15px, 1.45vw, 21px); line-height: 1.55;">La cercanía permite conectar la ceremonia y la celebración con mayor comodidad para los novios y sus invitados.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="espacio" data-screen-label="El espacio" style="position: relative; overflow: hidden; min-height: clamp(240px, 42vw, 610px); color: #fff;">
+    <img src="assets/espacio.webp" alt="Arco de cantera en Aurea" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 53% center;">
+    <div data-m="hero-scrim" style="position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.08) 45%, rgba(0,0,0,0.52));"></div>
+    <div style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; padding: 24px; text-align: center;">
+      <h2 data-i18n="space" style="margin: 0; font-weight: 400; font-size: clamp(24px, 5vw, 64px); line-height: 1.08; letter-spacing: 0.22em; text-transform: uppercase;">El espacio</h2>
+      <p data-i18n="spaceSub" style="margin: 0; font-size: clamp(10px, 1.4vw, 18px); letter-spacing: 0.22em; text-transform: uppercase;">Información y galería</p>
+    </div>
+  </section>
+
+  <section style="width: min(980px, calc(100vw - 48px)); margin: 0 auto; padding-block: clamp(56px, 9vw, 128px) clamp(48px, 7vw, 92px); text-align: center;">
+    <p data-i18n="spaceIntro" style="margin: 0; font-size: clamp(17px, 2vw, 27px); line-height: 1.6; text-wrap: pretty;">Diseñado para celebraciones íntimas, AUREA ofrece un entorno elegante y funcional que puede transformarse para reflejar la esencia de cada pareja.</p>
+  </section>
+
+  <section aria-label="Características del espacio" data-m="am-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; width: min(1180px, calc(100vw - 48px)); margin-inline: auto; padding-bottom: clamp(84px, 10vw, 150px);">
+    <article data-m="am-card" style="min-height: 280px; padding: clamp(20px, 3vw, 40px); background: #fffdf8; border: 1px solid rgba(1,59,51,0.18);">
+      <svg viewBox="0 0 36 36" aria-hidden="true" data-m="am-icon" style="width: 34px; height: 34px; fill: none; stroke: #c9a96e; stroke-width: 1.35px;">
+        <circle cx="13" cy="11" r="5"></circle>
+        <circle cx="25" cy="13" r="3.5"></circle>
+        <path d="M4 29c0-6 4-9 9-9s9 3 9 9M24 21c5 0 8 3 8 8"></path>
+      </svg>
+      <h3 data-i18n="am1t" style="margin: 26px 0 12px; color: #013b33; font-weight: 400; font-size: clamp(16px, 1.7vw, 24px); line-height: 1.28;">Hasta 130 invitados</h3>
+      <p data-i18n="am1b" style="margin: 0; font-size: clamp(14px, 1.35vw, 20px); line-height: 1.45;">Una capacidad ideal para celebraciones íntimas y grandes momentos.</p>
+    </article>
+    <article data-m="am-card" style="min-height: 280px; padding: clamp(20px, 3vw, 40px); background: #fffdf8; border: 1px solid rgba(1,59,51,0.18);">
+      <svg viewBox="0 0 36 36" aria-hidden="true" data-m="am-icon" style="width: 34px; height: 34px; fill: none; stroke: #c9a96e; stroke-width: 1.35px;">
+        <rect x="5" y="6" width="26" height="24"></rect>
+        <path d="M5 14h26M10 10h6"></path>
+        <circle cx="12" cy="22" r="3.5"></circle>
+        <circle cx="24" cy="22" r="3.5"></circle>
+      </svg>
+      <h3 data-i18n="am2t" style="margin: 26px 0 12px; color: #013b33; font-weight: 400; font-size: clamp(16px, 1.7vw, 24px); line-height: 1.28;">Cocina industrial</h3>
+      <p data-i18n="am2b" style="margin: 0; font-size: clamp(14px, 1.35vw, 20px); line-height: 1.45;">Infraestructura preparada para facilitar el servicio gastronómico de su evento.</p>
+    </article>
+    <article data-m="am-card" style="min-height: 280px; padding: clamp(20px, 3vw, 40px); background: #fffdf8; border: 1px solid rgba(1,59,51,0.18);">
+      <svg viewBox="0 0 36 36" aria-hidden="true" data-m="am-icon" style="width: 34px; height: 34px; fill: none; stroke: #c9a96e; stroke-width: 1.35px;">
+        <circle cx="18" cy="18" r="13"></circle>
+        <path d="M18 10v8.5l6 3.5"></path>
+      </svg>
+      <h3 data-i18n="am3t" style="margin: 26px 0 12px; color: #013b33; font-weight: 400; font-size: clamp(16px, 1.7vw, 24px); line-height: 1.28;">Horario extendido</h3>
+      <p data-i18n="am3b" style="margin: 0; font-size: clamp(14px, 1.35vw, 20px); line-height: 1.45;">Más tiempo para disfrutar cada momento de la celebración.</p>
+    </article>
+    <article data-m="am-card" style="min-height: 280px; padding: clamp(20px, 3vw, 40px); background: #fffdf8; border: 1px solid rgba(1,59,51,0.18);">
+      <svg viewBox="0 0 36 36" aria-hidden="true" data-m="am-icon" style="width: 34px; height: 34px; fill: none; stroke: #c9a96e; stroke-width: 1.35px;">
+        <circle cx="18" cy="18" r="13"></circle>
+        <path d="M18 11v14M11 18h14"></path>
+      </svg>
+      <h3 data-i18n="am4t" style="margin: 26px 0 12px; color: #013b33; font-weight: 400; font-size: clamp(16px, 1.7vw, 24px); line-height: 1.28;">Un lienzo</h3>
+      <p data-i18n="am4b" style="margin: 0; font-size: clamp(14px, 1.35vw, 20px); line-height: 1.45;">Un espacio adaptable al concepto, distribución y estilo de cada evento.</p>
+    </article>
+  </section>
+
+  <section data-screen-label="Galería" style="width: min(1180px, calc(100vw - 48px)); margin-inline: auto; padding-bottom: clamp(88px, 11vw, 160px);">
+    <h2 data-i18n="gallery" style="margin: 0 0 34px; color: #013b33; font-weight: 400; font-size: clamp(16px, 1.7vw, 25px); line-height: 1.2; letter-spacing: 0.12em; text-align: center; text-transform: uppercase;">La casa en pocos cuadros</h2>
+    <div aria-label="Filtros de galería" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 40px;">
+      <button onClick="{{ filterAll }}" data-filter="all" data-i18n="all" style="min-width: 112px; padding: 11px 22px; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: #fff; background: #c9a96e; border: 1px solid #c9a96e; cursor: pointer; transition: color 0.18s, background 0.18s;">Todas</button>
+      <button onClick="{{ filterZone1 }}" data-filter="1" data-i18n="zone1" style="min-width: 112px; padding: 11px 22px; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: #c9a96e; background: none; border: 1px solid #c9a96e; cursor: pointer; transition: color 0.18s, background 0.18s;" style-hover="color: #fff; background: #c9a96e;">Zona 1</button>
+      <button onClick="{{ filterZone2 }}" data-filter="2" data-i18n="zone2" style="min-width: 112px; padding: 11px 22px; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: #c9a96e; background: none; border: 1px solid #c9a96e; cursor: pointer; transition: color 0.18s, background 0.18s;" style-hover="color: #fff; background: #c9a96e;">Zona 2</button>
+    </div>
+    <div data-m="gal-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px;">
+      <button onClick="{{ openLightbox }}" data-zone="1" aria-label="Zona 1, imagen 1" style="position: relative; overflow: hidden; aspect-ratio: 4 / 3; padding: 0; background: rgba(1,59,51,0.06); border: 0; cursor: zoom-in;">
+        <img src="assets/zona1-1.webp" alt="Zona 1" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.2,0.7,0.2,1);">
+        <span style="position: absolute; inset: auto auto 12px 14px; color: #fff; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,0.7);">Zona 1</span>
+      </button>
+      <button onClick="{{ openLightbox }}" data-zone="1" aria-label="Zona 1, imagen 2" style="position: relative; overflow: hidden; aspect-ratio: 4 / 3; padding: 0; background: rgba(1,59,51,0.06); border: 0; cursor: zoom-in;">
+        <img src="assets/zona1-2.webp" alt="Zona 1" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.2,0.7,0.2,1);">
+        <span style="position: absolute; inset: auto auto 12px 14px; color: #fff; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,0.7);">Zona 1</span>
+      </button>
+      <button onClick="{{ openLightbox }}" data-zone="1" aria-label="Zona 1, imagen 3" style="position: relative; overflow: hidden; aspect-ratio: 4 / 3; padding: 0; background: rgba(1,59,51,0.06); border: 0; cursor: zoom-in;">
+        <img src="assets/zona1-3.webp" alt="Zona 1" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.2,0.7,0.2,1);">
+        <span style="position: absolute; inset: auto auto 12px 14px; color: #fff; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,0.7);">Zona 1</span>
+      </button>
+      <button onClick="{{ openLightbox }}" data-zone="1" aria-label="Zona 1, imagen 4" style="position: relative; overflow: hidden; aspect-ratio: 4 / 3; padding: 0; background: rgba(1,59,51,0.06); border: 0; cursor: zoom-in;">
+        <img src="assets/zona1-4.webp" alt="Zona 1" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.2,0.7,0.2,1);">
+        <span style="position: absolute; inset: auto auto 12px 14px; color: #fff; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,0.7);">Zona 1</span>
+      </button>
+    </div>
+    <div data-m="gal-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: 18px;">
+      <button onClick="{{ openLightbox }}" data-zone="2" aria-label="Zona 2, imagen 5" style="position: relative; overflow: hidden; aspect-ratio: 4 / 3; padding: 0; background: rgba(1,59,51,0.06); border: 0; cursor: zoom-in;">
+        <img src="assets/zona2-1.webp" alt="Zona 2" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.2,0.7,0.2,1);">
+        <span style="position: absolute; inset: auto auto 12px 14px; color: #fff; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,0.7);">Zona 2</span>
+      </button>
+      <button onClick="{{ openLightbox }}" data-zone="2" aria-label="Zona 2, imagen 6" style="position: relative; overflow: hidden; aspect-ratio: 4 / 3; padding: 0; background: rgba(1,59,51,0.06); border: 0; cursor: zoom-in;">
+        <img src="assets/zona2-2.webp" alt="Zona 2" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.2,0.7,0.2,1);">
+        <span style="position: absolute; inset: auto auto 12px 14px; color: #fff; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,0.7);">Zona 2</span>
+      </button>
+      <button onClick="{{ openLightbox }}" data-zone="2" aria-label="Zona 2, imagen 7" style="position: relative; overflow: hidden; aspect-ratio: 4 / 3; padding: 0; background: rgba(1,59,51,0.06); border: 0; cursor: zoom-in;">
+        <img src="assets/zona2-3.webp" alt="Zona 2" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.2,0.7,0.2,1);">
+        <span style="position: absolute; inset: auto auto 12px 14px; color: #fff; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,0.7);">Zona 2</span>
+      </button>
+      <button onClick="{{ openLightbox }}" data-zone="2" aria-label="Zona 2, imagen 8" style="position: relative; overflow: hidden; aspect-ratio: 4 / 3; padding: 0; background: rgba(1,59,51,0.06); border: 0; cursor: zoom-in;">
+        <img src="assets/zona2-4.webp" alt="Zona 2" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s cubic-bezier(0.2,0.7,0.2,1);">
+        <span style="position: absolute; inset: auto auto 12px 14px; color: #fff; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; text-shadow: 0 1px 8px rgba(0,0,0,0.7);">Zona 2</span>
+      </button>
+    </div>
+  </section>
+
+  <section id="preguntas" data-screen-label="Preguntas" style="width: min(1180px, calc(100vw - 48px)); margin-inline: auto; padding-block: clamp(26px, 5vw, 80px) clamp(88px, 11vw, 160px);">
+    <h2 data-i18n="faq" data-m="faq-title" style="margin: 0 0 clamp(40px, 5vw, 68px); color: #013b33; font-weight: 400; font-size: clamp(16px, 1.7vw, 25px); line-height: 1.2; letter-spacing: 0.12em; text-align: center; text-transform: uppercase; position: relative; top: -82px">Lo que suelen preguntarnos</h2>
+    <div style="border-top: 1.5px solid #013b33;">
+      <article style="border-bottom: 1px solid rgba(1,59,51,0.18);">
+        <button onClick="{{ toggleFaq }}" aria-expanded="false" data-m="faq-btn" style="display: grid; grid-template-columns: 42px minmax(0, 1fr) 28px; align-items: baseline; gap: 22px; width: 100%; padding: 28px 0; color: inherit; text-align: left; background: none; border: 0; cursor: pointer;">
+          <span style="color: #c9a96e; font-size: 13px; letter-spacing: 0.2em;">01</span>
+          <span data-i18n="faq1q" style="color: #013b33; font-size: clamp(17px, 2vw, 28px); line-height: 1.3;">¿Cuál es la capacidad máxima del venue?</span>
+          <span aria-hidden="true" data-faq-plus="1" style="color: #c9a96e; font-size: 26px; transition: transform 0.26s;">+</span>
+        </button>
+        <div data-faq-answer="1" style="display: grid; grid-template-rows: 0px; opacity: 0; transition: grid-template-rows 0.35s, opacity 0.26s;">
+          <p data-i18n="faq1a" data-m="faq-a" style="min-height: 0; margin: 0; padding: 0 48px 0 64px; overflow: hidden; font-size: clamp(15px, 1.55vw, 22px); line-height: 1.65;">AUREA está dimensionada para celebraciones de hasta ciento treinta invitados sentados a cenar.</p>
+        </div>
+      </article>
+      <article style="border-bottom: 1px solid rgba(1,59,51,0.18);">
+        <button onClick="{{ toggleFaq }}" aria-expanded="false" data-m="faq-btn" style="display: grid; grid-template-columns: 42px minmax(0, 1fr) 28px; align-items: baseline; gap: 22px; width: 100%; padding: 28px 0; color: inherit; text-align: left; background: none; border: 0; cursor: pointer;">
+          <span style="color: #c9a96e; font-size: 13px; letter-spacing: 0.2em;">02</span>
+          <span data-i18n="faq2q" style="color: #013b33; font-size: clamp(17px, 2vw, 28px); line-height: 1.3;">¿Tienen estacionamiento?</span>
+          <span aria-hidden="true" data-faq-plus="1" style="color: #c9a96e; font-size: 26px; transition: transform 0.26s;">+</span>
+        </button>
+        <div data-faq-answer="1" style="display: grid; grid-template-rows: 0px; opacity: 0; transition: grid-template-rows 0.35s, opacity 0.26s;">
+          <p data-i18n="faq2a" data-m="faq-a" style="min-height: 0; margin: 0; padding: 0 48px 0 64px; overflow: hidden; font-size: clamp(15px, 1.55vw, 22px); line-height: 1.65;">La casa se ubica en zona peatonal del centro histórico, por lo que no contamos con estacionamiento propio.</p>
+        </div>
+      </article>
+      <article style="border-bottom: 1px solid rgba(1,59,51,0.18);">
+        <button onClick="{{ toggleFaq }}" aria-expanded="false" data-m="faq-btn" style="display: grid; grid-template-columns: 42px minmax(0, 1fr) 28px; align-items: baseline; gap: 22px; width: 100%; padding: 28px 0; color: inherit; text-align: left; background: none; border: 0; cursor: pointer;">
+          <span style="color: #c9a96e; font-size: 13px; letter-spacing: 0.2em;">03</span>
+          <span data-i18n="faq3q" style="color: #013b33; font-size: clamp(17px, 2vw, 28px); line-height: 1.3;">¿Hasta qué hora se pueden hacer eventos?</span>
+          <span aria-hidden="true" data-faq-plus="1" style="color: #c9a96e; font-size: 26px; transition: transform 0.26s;">+</span>
+        </button>
+        <div data-faq-answer="1" style="display: grid; grid-template-rows: 0px; opacity: 0; transition: grid-template-rows 0.35s, opacity 0.26s;">
+          <p data-i18n="faq3a" data-m="faq-a" style="min-height: 0; margin: 0; padding: 0 48px 0 64px; overflow: hidden; font-size: clamp(15px, 1.55vw, 22px); line-height: 1.65;">Conforme al reglamento del centro histórico, la música amplificada al aire libre concluye a la una de la mañana. Dentro del salón el evento puede extenderse hasta las dos.</p>
+        </div>
+      </article>
+      <article style="border-bottom: 1px solid rgba(1,59,51,0.18);">
+        <button onClick="{{ toggleFaq }}" aria-expanded="false" data-m="faq-btn" style="display: grid; grid-template-columns: 42px minmax(0, 1fr) 28px; align-items: baseline; gap: 22px; width: 100%; padding: 28px 0; color: inherit; text-align: left; background: none; border: 0; cursor: pointer;">
+          <span style="color: #c9a96e; font-size: 13px; letter-spacing: 0.2em;">04</span>
+          <span data-i18n="faq4q" style="color: #013b33; font-size: clamp(17px, 2vw, 28px); line-height: 1.3;">¿Cómo se reserva una fecha?</span>
+          <span aria-hidden="true" data-faq-plus="1" style="color: #c9a96e; font-size: 26px; transition: transform 0.26s;">+</span>
+        </button>
+        <div data-faq-answer="1" style="display: grid; grid-template-rows: 0px; opacity: 0; transition: grid-template-rows 0.35s, opacity 0.26s;">
+          <p data-i18n="faq4a" data-m="faq-a" style="min-height: 0; margin: 0; padding: 0 48px 0 64px; overflow: hidden; font-size: clamp(15px, 1.55vw, 22px); line-height: 1.65;">Una vez enviada y aceptada la cotización, la fecha quedará reservada mediante la firma del contrato y el pago de un anticipo equivalente al 50% del monto total. El resto deberá liquidarse a más tardar 30 días antes del evento.</p>
+        </div>
+      </article>
+      <article style="border-bottom: 1px solid rgba(1,59,51,0.18);">
+        <button onClick="{{ toggleFaq }}" aria-expanded="false" data-m="faq-btn" style="display: grid; grid-template-columns: 42px minmax(0, 1fr) 28px; align-items: baseline; gap: 22px; width: 100%; padding: 28px 0; color: inherit; text-align: left; background: none; border: 0; cursor: pointer;">
+          <span style="color: #c9a96e; font-size: 13px; letter-spacing: 0.2em;">05</span>
+          <span data-i18n="faq5q" style="color: #013b33; font-size: clamp(17px, 2vw, 28px); line-height: 1.3;">¿Cuánto tiempo antes hay que reservar?</span>
+          <span aria-hidden="true" data-faq-plus="1" style="color: #c9a96e; font-size: 26px; transition: transform 0.26s;">+</span>
+        </button>
+        <div data-faq-answer="1" style="display: grid; grid-template-rows: 0px; opacity: 0; transition: grid-template-rows 0.35s, opacity 0.26s;">
+          <p data-i18n="faq5a" data-m="faq-a" style="min-height: 0; margin: 0; padding: 0 48px 0 64px; overflow: hidden; font-size: clamp(15px, 1.55vw, 22px); line-height: 1.65;">Las fechas más solicitadas suelen apartarse con doce a dieciocho meses de anticipación. Para temporada baja y días entre semana, seis meses suelen ser suficientes.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="como-llegar" data-screen-label="Cómo llegar" style="width: min(1180px, calc(100vw - 48px)); margin-inline: auto; padding-bottom: clamp(24px, 11vw, 160px); text-align: center;">
+    <h2 data-i18n="mapTitle" data-m="map-title" style="margin: 0 0 34px; color: #013b33; font-weight: 400; font-size: clamp(16px, 1.7vw, 25px); line-height: 1.2; letter-spacing: 0.12em; text-transform: uppercase; position: relative; top: -38px">Cómo llegar</h2>
+    <p data-i18n="mapBody" style="max-width: 900px; margin: 0 auto 48px; font-size: clamp(17px, 1.8vw, 25px); line-height: 1.55;">AUREA se encuentra en una zona ideal para descubrirse a pie. Le recomendamos disfrutar del recorrido por sus calles y tomar el mapa como guía hasta nuestra puerta.</p>
+    <iframe title="Aurea — Google Maps" src="https://www.google.com/maps?q=Adolfo%20Gurri%C3%B3n%20104,%20RUTA%20INDEPENDENCIA,%20Centro,%2068000%20Oaxaca%20de%20Ju%C3%A1rez,%20Oax.&amp;output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" data-m="map" style="width: 100%; height: clamp(340px, 50vw, 520px); border: 12px solid #fffdf8;"></iframe>
+    <address data-m="map-addr" style="margin-top: 20px; font-size: 15px; font-style: normal; line-height: 1.5; text-align: right;">Adolfo Gurrión 104, Ruta Independencia, Centro, 68000 Oaxaca de Juárez, Oax.</address>
+  </section>
+
+  <section id="contacto" data-screen-label="Contacto">
+    <div style="position: relative; overflow: hidden; min-height: clamp(240px, 38vw, 520px); color: #fff;">
+      <img src="assets/contacto.webp" alt="Orquídeas blancas en Aurea" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 46%;">
+      <div style="position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.08) 45%, rgba(0,0,0,0.52));"><div data-m="contact-overlay" style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 16px; padding: 24px; text-align: center; left: -26px; top: -5px; width: 1795px; height: 512px">
+        <h2 data-i18n="contact" style="margin: 0; font-weight: 400; font-size: clamp(24px, 5vw, 64px); line-height: 1.08; letter-spacing: 0.22em; text-transform: uppercase;">Contacto</h2>
+        <p data-i18n="contactLede" style="margin: 0; font-size: clamp(10px, 1.4vw, 18px); letter-spacing: 0.22em; text-transform: uppercase;">¿Cómo imagina su boda?</p>
+      </div></div>
+      
+    </div>
+    <div style="width: min(980px, calc(100vw - 48px)); margin: 0 auto; padding-block: clamp(58px, 9vw, 128px); text-align: center;">
+      <p data-i18n="contactBody" style="margin: 0; font-size: clamp(17px, 2vw, 27px); line-height: 1.6; text-wrap: pretty;">Cada celebración comienza con una conversación. Reciba atención personalizada para compartir su visión, definir cada detalle y dar forma a una experiencia verdaderamente suya.</p>
+      <p data-i18n="contactClosing" style="margin: 34px 0 0; font-size: clamp(17px, 2vw, 27px); line-height: 1.6;">Será un placer atenderle.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items: stretch; gap: clamp(24px, 5vw, 68px); width: min(1180px, calc(100vw - 48px)); margin-inline: auto; padding-bottom: clamp(30px, 10vw, 140px);">
+      <div data-m="form-card" style="min-height: 620px; padding: clamp(24px, 4vw, 48px); background: #fffdf8; border: 1px solid rgba(1,59,51,0.18);">
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <p data-i18n="sent" style="display: grid; place-items: center; min-height: 400px; margin: 0; color: #013b33; font-size: clamp(22px, 3vw, 34px); line-height: 1.5; text-align: center;">Gracias. En breve le contactaremos.</p>
+        </sc-if>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <h3 data-i18n="formTitle" style="margin: 0 0 28px; color: #013b33; font-weight: 700; font-size: clamp(26px, 3vw, 38px);">Escríbanos</h3>
+            <form onSubmit="{{ submitForm }}" style="display: grid; gap: 16px;">
+              <input name="nombre" required="" placeholder="Nombre" aria-label="Nombre" data-i18n-ph="fName" style="width: 100%; min-width: 0; padding: 14px 15px; font-size: 16px; color: #1b1b1b; background: none; border: 1px solid rgba(1,59,51,0.18); border-radius: 0; outline: none; transition: border-color 0.18s;" style-focus="border-color: #c9a96e;">
+              <input name="email" type="email" required="" placeholder="Email" aria-label="Email" data-i18n-ph="fEmail" style="width: 100%; min-width: 0; padding: 14px 15px; font-size: 16px; color: #1b1b1b; background: none; border: 1px solid rgba(1,59,51,0.18); border-radius: 0; outline: none; transition: border-color 0.18s;" style-focus="border-color: #c9a96e;">
+              <input name="telefono" type="tel" placeholder="Teléfono" aria-label="Teléfono" data-i18n-ph="fPhone" style="width: 100%; min-width: 0; padding: 14px 15px; font-size: 16px; color: #1b1b1b; background: none; border: 1px solid rgba(1,59,51,0.18); border-radius: 0; outline: none; transition: border-color 0.18s;" style-focus="border-color: #c9a96e;">
+              <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">
+                <label style="display: grid; gap: 7px; color: #c9a96e; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;">
+                  <span data-i18n="fDate">Fecha estimada</span>
+                  <input name="fecha" type="date" style="width: 100%; min-width: 0; padding: 14px 15px; font-size: 16px; color: #1b1b1b; background: none; border: 1px solid rgba(1,59,51,0.18); border-radius: 0; outline: none;">
+                </label>
+                <label style="display: grid; gap: 7px; color: #c9a96e; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;">
+                  <span data-i18n="fGuests">Invitados</span>
+                  <input name="invitados" type="number" min="1" style="width: 100%; min-width: 0; padding: 14px 15px; font-size: 16px; color: #1b1b1b; background: none; border: 1px solid rgba(1,59,51,0.18); border-radius: 0; outline: none;">
+                </label>
+              </div>
+              <textarea name="mensaje" rows="5" placeholder="Mensaje" aria-label="Mensaje" data-i18n-ph="fMessage" style="width: 100%; min-width: 0; padding: 14px 15px; font-size: 16px; color: #1b1b1b; background: none; border: 1px solid rgba(1,59,51,0.18); border-radius: 0; outline: none; resize: vertical; transition: border-color 0.18s;" style-focus="border-color: #c9a96e;"></textarea>
+              <button type="submit" disabled="{{ sending }}" data-i18n="fSend" style="padding: 16px 24px; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; background: #013b33; border: 1px solid #013b33; cursor: pointer; transition: background 0.18s, border-color 0.18s;" style-hover="background: #c9a96e; border-color: #c9a96e;">Enviar</button>
+              <small data-i18n="privacy" style="opacity: 0.62; font-size: 13px; line-height: 1.55;">Sus datos serán tratados con confidencialidad y solo se usarán para contactarle sobre Aurea.</small>
+              <sc-if value="{{ sendError }}" hint-placeholder-val="{{ false }}">
+                <small data-i18n="sendErr" style="color: #8a2f22; font-size: 13px; line-height: 1.55;">No pudimos enviar su mensaje. Intente de nuevo o escríbanos por WhatsApp.</small>
+              </sc-if>
+            </form>
+          </div>
+        </sc-if>
+      </div>
+      <div data-m="wa-card" style="position: relative; overflow: hidden; min-height: 620px; background: #013b33;">
+        <img src="assets/anfitriona.webp" alt="Anfitriona de Aurea" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.02) 35%, rgba(0,0,0,0.7));"></div>
+        <div data-m="wa-overlay" style="position: absolute; inset: auto 0 42px; z-index: 1; padding: 24px; color: #fff; text-align: center;">
+          <h3 data-i18n="talk" data-m="wa-title" style="margin: 0 0 22px; font-weight: 400; font-size: clamp(22px, 3vw, 36px); position: relative; top: -254px">¿Prefiere hablar ya?</h3>
+          <a href="{{ waLink }}" target="_blank" rel="noopener noreferrer" data-i18n="whatsapp" data-m="wa-btn" style="display: inline-block; width: min(100%, 360px); padding: 15px 24px; font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; background: rgba(1,59,51,0.9); border: 1px solid #c9a96e; position: relative; top: -266px; color: #fff; transition: background 220ms ease, box-shadow 220ms ease, border-color 220ms ease" style-hover="color: #fff; background: #c9a96e; border-color: #e3c894; box-shadow: 0 0 24px rgba(201,169,110,0.45)">Escribir por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer data-m="footer" style="padding: clamp(32px, 7vw, 92px) 0 30px; color: #f5f2eb; background: #013b33; height: 235px">
+    <div data-m="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start; gap: clamp(18px, 4vw, 58px); width: min(1180px, calc(100vw - 48px)); margin-inline: auto;">
+      <img data-m="footer-logo" src="assets/logo-footer.webp" alt="Aurea, casa de eventos" style="width: min(260px, 100%); margin-top: -18px; position: relative; top: -52px">
+      <div style="display: grid; gap: 8px;">
+        <span data-i18n="lAddress" style="color: #c9a96e; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;">Dirección</span>
+        <p style="margin: 0 0 12px; font-size: 16px; line-height: 1.55; overflow-wrap: anywhere;">Adolfo Gurrión 104, Ruta Independencia, Centro, 68000 Oaxaca de Juárez, Oax.</p>
+      </div>
+      <div style="display: grid; gap: 8px;">
+        <span data-i18n="lHours" style="color: #c9a96e; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;">Atención en línea</span>
+        <p data-i18n="hours" style="margin: 0 0 12px; font-size: 16px; line-height: 1.55;">Lunes a sábado de 9:00 am a 6:00 pm.</p>
+      </div>
+      <div style="display: grid; gap: 8px;">
+        <span data-i18n="lMail" style="color: #c9a96e; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;">Correo</span>
+        <a href="mailto:aurea.casadeeventos@gmail.com" style="margin: 0 0 12px; font-size: 16px; line-height: 1.55; overflow-wrap: anywhere;">aurea.casadeeventos@gmail.com</a>
+        <span data-i18n="lPhone" style="color: #c9a96e; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;">Teléfono</span>
+        <a href="tel:+529514713422" style="margin: 0; font-size: 16px; line-height: 1.55;">+52 951 471 3422</a>
+      </div>
+    </div>
+    <div data-m="footer-bar" style="display: flex; justify-content: space-between; gap: 20px; width: min(1180px, calc(100vw - 48px)); margin: clamp(24px, 5vw, 64px) auto 0; padding-top: 20px; color: rgba(245,242,235,0.58); font-size: 12px; letter-spacing: 0.13em; text-transform: uppercase; border-top: 1px solid rgba(201,169,110,0.3); position: relative; top: -120px">
+      <span>© 2026 Aurea</span>
+      <span>Web design by Magenta</span>
+    </div>
+  </footer>
+
+  <sc-if value="{{ lightbox }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeLightbox }}" style="position: fixed; inset: 0; z-index: 300; display: grid; place-items: center; padding: 20px; background: rgba(0,0,0,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);">
+      <button aria-label="Cerrar" style="position: absolute; top: 18px; right: 22px; z-index: 1; width: 44px; height: 44px; color: #c9a96e; font-size: 34px; line-height: 1; background: none; border: 0; cursor: pointer;">×</button>
+      <img src="{{ lightbox }}" alt="" style="max-width: min(1180px, 92vw); max-height: 88vh; object-fit: contain; box-shadow: 0 30px 90px rgba(0,0,0,0.5);">
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; z-index: 300; display: grid; place-items: center; padding: 20px; background: rgba(0,0,0,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);">
+      <div data-m="modal-card" style="position: relative; width: min(620px, 100%); max-height: calc(100svh - 40px); padding: clamp(24px, 5vw, 52px); overflow-y: auto; background: rgba(245,242,235,0.98); border: 1px solid rgba(201,169,110,0.55); box-shadow: 0 36px 90px rgba(0,0,0,0.45);">
+        <button onClick="{{ closeModal }}" aria-label="Cerrar" style="position: absolute; top: 8px; right: 12px; z-index: 1; width: 44px; height: 44px; color: #c9a96e; font-size: 34px; line-height: 1; background: none; border: 0; cursor: pointer;">×</button>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <p data-i18n="sent" style="display: grid; place-items: center; min-height: 220px; margin: 0; color: #013b33; font-size: clamp(22px, 3vw, 34px); line-height: 1.5; text-align: center;">Gracias. En breve le contactaremos.</p>
+        </sc-if>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <h2 data-i18n="cta" style="margin: 0 0 8px; color: #013b33; font-weight: 700; font-size: clamp(26px, 3vw, 38px);">Haga una cita</h2>
+            <p data-i18n="contactLede" style="margin: 0 0 28px; color: #c9a96e; letter-spacing: 0.12em; text-transform: uppercase;">¿Cómo imagina su boda?</p>
+            <form onSubmit="{{ submitForm }}" style="display: grid; gap: 16px;">
+              <input name="nombre" required="" placeholder="Nombre" aria-label="Nombre" data-i18n-ph="fName" style="width: 100%; min-width: 0; padding: 14px 15px; font-size: 16px; color: #1b1b1b; background: none; border: 1px solid rgba(1,59,51,0.18); border-radius: 0; outline: none;" style-focus="border-color: #c9a96e;">
+              <input name="email" type="email" required="" placeholder="Email" aria-label="Email" data-i18n-ph="fEmail" style="width: 100%; min-width: 0; padding: 14px 15px; font-size: 16px; color: #1b1b1b; background: none; border: 1px solid rgba(1,59,51,0.18); border-radius: 0; outline: none;" style-focus="border-color: #c9a96e;">
+              <input name="telefono" type="tel" placeholder="Teléfono" aria-label="Teléfono" data-i18n-ph="fPhone" style="width: 100%; min-width: 0; padding: 14px 15px; font-size: 16px; color: #1b1b1b; background: none; border: 1px solid rgba(1,59,51,0.18); border-radius: 0; outline: none;" style-focus="border-color: #c9a96e;">
+              <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">
+                <label style="display: grid; gap: 7px; color: #c9a96e; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;">
+                  <span data-i18n="fDate">Fecha estimada</span>
+                  <input name="fecha" type="date" style="width: 100%; min-width: 0; padding: 14px 15px; font-size: 16px; color: #1b1b1b; background: none; border: 1px solid rgba(1,59,51,0.18); border-radius: 0; outline: none;">
+                </label>
+                <label style="display: grid; gap: 7px; color: #c9a96e; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;">
+                  <span data-i18n="fGuests">Invitados</span>
+                  <input name="invitados" type="number" min="1" style="width: 100%; min-width: 0; padding: 14px 15px; font-size: 16px; color: #1b1b1b; background: none; border: 1px solid rgba(1,59,51,0.18); border-radius: 0; outline: none;">
+                </label>
+              </div>
+              <button type="submit" disabled="{{ sending }}" data-i18n="fSend" style="padding: 16px 24px; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; background: #013b33; border: 1px solid #013b33; cursor: pointer;" style-hover="background: #c9a96e; border-color: #c9a96e;">Enviar</button>
+              <small data-i18n="privacy" style="opacity: 0.62; font-size: 13px; line-height: 1.55;">Sus datos serán tratados con confidencialidad y solo se usarán para contactarle sobre Aurea.</small>
+              <sc-if value="{{ sendError }}" hint-placeholder-val="{{ false }}">
+                <small data-i18n="sendErr" style="color: #8a2f22; font-size: 13px; line-height: 1.55;">No pudimos enviar su mensaje. Intente de nuevo o escríbanos por WhatsApp.</small>
+              </sc-if>
+            </form>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showFilm&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Secciones&quot;},&quot;showLanguageToggle&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Secciones&quot;},&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;5219514713422&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;}}">
+const EN = {
+  navHome: "Home", navSpace: "The space", navContact: "Contact", cta: "Book an appointment",
+  hero: "The perfect setting for your wedding", heroL1: "The perfect setting", heroL2: "for your wedding", heroSub: "A venue facing Santo Domingo",
+  intro1: "Aurea exists for a single purpose: to make the celebration a memory meant to last.",
+  intro2: "Today, that same place which has kept centuries of history opens to keep yours.",
+  shared: "A life shared is written through moments, places, and memories.",
+  encounter: "The encounter", encounterCaption: "Temple of Santo Domingo de Guzmán",
+  encounterBody: "Begun in 1575, the construction of the Temple of Santo Domingo de Guzmán gave rise to one of the most representative complexes of Novohispanic Baroque. Its presence makes the setting around Aurea one that is hard to find anywhere else.",
+  hist1t: "A monumental work", hist1b: "Its Latin-cross floor plan, ten side chapels, and ornamented vaults reflect the artistic richness of the Novohispanic period.",
+  hist2t: "Living heritage", hist2b: "The temple is part of Oaxaca's Historic Center, recognized as a UNESCO World Heritage Site since 1987.",
+  hist3t: "An experience just steps away", hist3b: "The proximity connects the ceremony and celebration with greater comfort for the couple and their guests.",
+  space: "The space", spaceSub: "Information and gallery",
+  spaceIntro: "Designed for intimate celebrations, AUREA offers an elegant, functional setting that can be transformed to reflect the essence of each couple.",
+  am1t: "Up to 130 guests", am1b: "An ideal capacity for intimate celebrations and big moments.",
+  am2t: "Industrial kitchen", am2b: "Infrastructure ready to support your event's catering service.",
+  am3t: "Extended hours", am3b: "More time to enjoy every moment of the celebration.",
+  am4t: "A blank canvas", am4b: "A space adaptable to the concept, layout, and style of each event.",
+  gallery: "The house in a few frames", all: "All", zone1: "Zone 1", zone2: "Zone 2",
+  faq: "What people usually ask us",
+  faq1q: "What is the venue's maximum capacity?", faq1a: "AUREA is designed for celebrations of up to one hundred thirty seated dinner guests.",
+  faq2q: "Do you have parking?", faq2a: "The house is located in a pedestrian zone of the historic center, so we do not have our own parking.",
+  faq3q: "Until what time can events run?", faq3a: "In accordance with historic center regulations, amplified outdoor music ends at one in the morning. Inside the hall, the event can run until two.",
+  faq4q: "How do you reserve a date?", faq4a: "Once the quote is accepted, the date is secured by signing the contract and paying a 50% deposit. The remaining balance is due no later than 30 days before the event.",
+  faq5q: "How far in advance should you book?", faq5a: "The most requested dates are usually booked twelve to eighteen months in advance. For low season and weekdays, six months is usually enough.",
+  mapTitle: "How to get here", mapBody: "AUREA is located in an area ideal for exploring on foot. Enjoy the walk through its streets and use the map as your guide to our door.",
+  contact: "Contact", contactLede: "How do you imagine your wedding?",
+  contactBody: "Every celebration begins with a conversation. Receive personalized attention to share your vision, define every detail, and shape an experience that is truly yours.",
+  contactClosing: "It will be a pleasure to assist you.",
+  formTitle: "Write to us", fName: "Name", fEmail: "Email", fPhone: "Phone", fDate: "Estimated date", fGuests: "Guests", fMessage: "Message", fSend: "Send",
+  privacy: "Your data will be treated confidentially and used only to contact you about Aurea.",
+  sent: "Thank you. We will contact you shortly.",
+  sendErr: "We could not send your message. Please try again or message us on WhatsApp.",
+  talk: "Prefer to talk now?", whatsapp: "Message us on WhatsApp",
+  lAddress: "Address", lHours: "Online hours", lMail: "Email", lPhone: "Phone",
+  hours: "Monday to Saturday, 9:00 am to 6:00 pm."
+};
+
+class Component extends DCLogic {
+  state = { menuOpen: false, modalOpen: false, sent: false, lightbox: null };
+  root = React.createRef();
+  playFilm() {
+    const v = this.root.current && this.root.current.querySelector("video");
+    if (!v) return;
+    v.muted = false;
+    v.volume = 1;
+  }
+  es = new Map();
+  lang = "es";
+
+  cacheES() {
+    if (this.es.size) return;
+    const r = this.root.current;
+    if (!r) return;
+    r.querySelectorAll("[data-i18n]").forEach((el) => {
+      const k = el.getAttribute("data-i18n");
+      if (!this.es.has("t:" + k)) this.es.set("t:" + k, el.textContent);
+    });
+    r.querySelectorAll("[data-i18n-ph]").forEach((el) => {
+      const k = el.getAttribute("data-i18n-ph");
+      if (!this.es.has("p:" + k)) this.es.set("p:" + k, el.getAttribute("placeholder"));
+    });
+  }
+
+  paint() {
+    const r = this.root.current;
+    if (!r) return;
+    const en = this.lang === "en";
+    r.querySelectorAll("[data-i18n]").forEach((el) => {
+      const k = el.getAttribute("data-i18n");
+      const v = en ? EN[k] : this.es.get("t:" + k);
+      if (v) el.textContent = v;
+    });
+    r.querySelectorAll("[data-i18n-ph]").forEach((el) => {
+      const k = el.getAttribute("data-i18n-ph");
+      const v = en ? EN[k] : this.es.get("p:" + k);
+      if (v) el.setAttribute("placeholder", v);
+    });
+    r.querySelectorAll("[data-lang-es]").forEach((el) => {
+      el.style.opacity = en ? "0.45" : "1";
+      el.style.fontWeight = en ? "400" : "700";
+    });
+    r.querySelectorAll("[data-lang-en]").forEach((el) => {
+      el.style.opacity = en ? "1" : "0.45";
+      el.style.fontWeight = en ? "700" : "400";
+    });
+  }
+
+  componentDidMount() {
+    this.cacheES();
+    this.playFilm();
+    this.onFsChange = () => {
+      const r = this.root.current;
+      const v = r && r.querySelector("[data-film-sec] video");
+      if (!v) return;
+      const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+      v.style.objectFit = fsEl === v ? "contain" : "cover";
+    };
+    document.addEventListener("fullscreenchange", this.onFsChange);
+    document.addEventListener("webkitfullscreenchange", this.onFsChange);
+    this.sync = () => {
+      const r = this.root.current;
+      if (!r) return;
+      const narrow = window.innerWidth <= 1100;
+      const small = window.innerWidth <= 760;
+      const mb = r.querySelector("[data-menu-button]");
+      if (mb) mb.style.display = narrow ? "block" : "none";
+      const nav = r.querySelector("nav[aria-label]");
+      if (nav) nav.style.display = narrow ? "none" : "flex";
+      const cta = r.querySelector("header button[data-i18n='cta']");
+      if (cta) cta.style.display = small ? "none" : "block";
+    };
+    this.sync();
+    window.addEventListener("resize", this.sync);
+  }
+
+  componentDidUpdate() { this.cacheES(); this.paint(); if (this.sync) this.sync(); }
+  componentWillUnmount() { if (this.sync) window.removeEventListener("resize", this.sync); }
+
+  renderVals() {
+    return {
+      rootRef: this.root,
+      menuOpen: this.state.menuOpen,
+      modalOpen: this.state.modalOpen,
+      lightbox: this.state.lightbox,
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      sending: !!this.state.sending,
+      sendError: !!this.state.sendError,
+      film: this.props.showFilm ?? true,
+      langToggle: this.props.showLanguageToggle ?? true,
+      waLink: "https://wa.me/" + (this.props.whatsappNumber ?? "5219514713422") + "?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20Aurea%20y%20quiero%20cotizar%20mi%20boda",
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      openModal: () => this.setState({ modalOpen: true, menuOpen: false }),
+      closeModal: () => this.setState({ modalOpen: false }),
+      closeLightbox: () => this.setState({ lightbox: null }),
+      openLightbox: (e) => {
+        const img = e.currentTarget.querySelector("img");
+        if (img) this.setState({ lightbox: img.getAttribute("src") });
+      },
+      submitForm: (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const data = new FormData(form);
+        data.append("_subject", "Nuevo contacto — Aurea");
+        this.setState({ sending: true });
+        fetch("https://formspree.io/f/mljrryao", {
+          method: "POST",
+          body: data,
+          headers: { Accept: "application/json" }
+        })
+          .then((r) => r.json().then((j) => ({ ok: r.ok, j })))
+          .then(({ ok }) => {
+            if (!ok) throw new Error("formspree");
+            form.reset();
+            this.setState({ sending: false, sent: true, sendError: false });
+          })
+          .catch(() => this.setState({ sending: false, sendError: true }));
+      },
+      toggleLang: () => {
+        this.cacheES();
+        this.lang = this.lang === "es" ? "en" : "es";
+        this.paint();
+      },
+      toggleFaq: (e) => {
+        const btn = e.currentTarget;
+        const art = btn.parentElement;
+        const ans = art.querySelector("[data-faq-answer]");
+        const plus = btn.querySelector("[data-faq-plus]");
+        const open = ans.style.gridTemplateRows !== "" && ans.style.gridTemplateRows !== "0px";
+        const list = art.parentElement;
+        list.querySelectorAll("[data-faq-answer]").forEach((a) => {
+          a.style.gridTemplateRows = "0px";
+          a.style.opacity = "0";
+          const p = a.querySelector("p");
+          if (p) p.style.paddingBottom = "0px";
+        });
+        list.querySelectorAll("[data-faq-plus]").forEach((p) => { p.style.transform = "none"; });
+        list.querySelectorAll("button[aria-expanded]").forEach((b) => b.setAttribute("aria-expanded", "false"));
+        if (!open) {
+          const p = ans.querySelector("p");
+          if (p) p.style.paddingBottom = "32px";
+          ans.style.gridTemplateRows = (p ? p.scrollHeight : 0) + "px";
+          ans.style.opacity = "1";
+          if (plus) plus.style.transform = "rotate(45deg)";
+          btn.setAttribute("aria-expanded", "true");
+        }
+      },
+      filterAll: (e) => this.filter(e, "all"),
+      filterZone1: (e) => this.filter(e, "1"),
+      filterZone2: (e) => this.filter(e, "2")
+    };
+  }
+
+  filter(e, zone) {
+    const bar = e.currentTarget.parentElement;
+    bar.querySelectorAll("button[data-filter]").forEach((b) => {
+      const on = b.getAttribute("data-filter") === zone;
+      b.style.background = on ? "#c9a96e" : "transparent";
+      b.style.color = on ? "#fff" : "#c9a96e";
+    });
+    const section = bar.parentElement;
+    section.querySelectorAll("button[data-zone]").forEach((c) => {
+      const on = zone === "all" || c.getAttribute("data-zone") === zone;
+      c.style.display = on ? "block" : "none";
+      c.parentElement.style.display = "grid";
+    });
+    section.querySelectorAll("button[data-zone]").forEach((c) => {
+      const grid = c.parentElement;
+      const any = Array.prototype.some.call(grid.children, (k) => k.style.display !== "none");
+      grid.style.display = any ? "grid" : "none";
+    });
+  }
+}
+</script>
+</body>
+</html>
